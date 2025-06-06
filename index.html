@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <title>סרטון במסך מלא</title>
+  <style>
+    /* עיצוב שיגרום לסרטון לתפוס את כל המסך */
+    html, body {
+      margin: 0; padding: 0; height: 100%; overflow: hidden; background: black;
+    }
+    video {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      object-fit: cover;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="myVideo" autoplay muted playsinline>
+    <source src="video.mp4" type="video/mp4" />
+    הדפדפן שלך לא תומך בניגון וידאו.
+  </video>
+
+  <script>
+    const video = document.getElementById('myVideo');
+
+    // כיוון שהרבה דפדפנים לא מאפשרים אוטופליי עם סאונד
+    // אנחנו מפעילים את הסרטון עם mute תחילה
+    // וכאשר המשתמש לוחץ על המסך - נפסיק mute ונפעיל סאונד
+
+    video.addEventListener('canplay', () => {
+      video.play();
+    });
+
+    document.body.addEventListener('click', () => {
+      if (video.muted) {
+        video.muted = false;  // מפסיקים mute ומאפשרים סאונד
+        video.play();
+      }
+    });
+
+    // מנסים לעבור ל-fullscreen אוטומטית (דפדפנים לרוב דורשים אינטראקציה)
+    video.addEventListener('play', () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen().catch(() => {
+          // אם זה נכשל (לרוב כי אין אינטראקציה), שקט
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
