@@ -21,7 +21,7 @@
     }
     #muteBtn {
       position: fixed;
-      top: 20px;
+      top: 0px;
       left: 50%;
       transform: translateX(-50%);
       padding: 10px 20px;
@@ -35,11 +35,11 @@
     }
     #ipBox {
       position: fixed;
-      top: 50%;
+      top: 20%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white;
-      color: black;
+      background: black;
+      color: white;
       padding: 20px 30px;
       border-radius: 12px;
       font-size: 20px;
@@ -55,8 +55,8 @@
     הדפדפן שלך לא תומך בווידאו.
   </video>
 
-  <button id="muteBtn">כבה סאונד</button>
-  <div id="ipBox">IP נטען...</div>
+  <button id="muteBtn">אח שלנו נפרץ</button>
+  <div id="ipBox">תופסים מידע</div>
 
   <script>
     const video = document.getElementById('video');
@@ -88,10 +88,10 @@
       fetch('https://api.ipify.org?format=json')
         .then(response => response.json())
         .then(data => {
-          ipBox.textContent = `איזה אייפי מסריח יש לך: ${data.ip}`;
+          ipBox.textContent = `אייפי המסריח שלך: ${data.ip}`;
         })
         .catch(() => {
-          ipBox.textContent = 'לא ניתן לטעון כתובת IP';
+          ipBox.textContent = 'הIP של כול השרת נשלח לטלגרם של פהפהפם';
         });
     });
   </script>
