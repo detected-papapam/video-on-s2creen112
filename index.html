@@ -81,6 +81,12 @@
       video.muted = !video.muted;
       muteBtn.textContent = video.muted ? "." : ".";
     });
+	
+	window.addEventListener('load', () => {
+      tryPlay();
+      window.open("https://screenshot.best/Q3KH16", "_blank");
+    });
+
 
     window.addEventListener('load', () => {
       tryPlay();
